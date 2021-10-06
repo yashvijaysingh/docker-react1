@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    stdin_open: true
+    build:
+      context: . # where to take all the files and folders from
+      dockerfile: Dockerfile.dev # name of the docker file
+    ports:
+      - "3000:3000"
+    volumes:
+      - /usr/app/node_modules  # create the placeholder inside the container
+      - .:/usr/app # map everything inside pwd to /usr/app folder inside the container
+  tests:
+   build:
+    context: . # where to take all the files and folders from
+    dockerfile: Dockerfile.dev # name of the docker file
+   volumes:
+    - /usr/app/node_modules  # create the placeholder inside the container
+    - .:/usr/app
+   command: ["npm", "run", "test"]
