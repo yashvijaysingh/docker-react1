@@ -8,3 +8,5 @@ before_install:
 
 script:
   - docker run -e CI=true yashvs/docker-react1 npm run test
+deploy:
+  
